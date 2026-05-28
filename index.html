@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PE Teacher Academy — Find Your CPD</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+<style>
+/* ── DESIGN TOKENS ── */
+:root, [data-theme="light"] {
+  --color-bg: #f4f6f0;
+  --color-surface: #f9faf7;
+  --color-surface-2: #ffffff;
+  --color-surface-offset: #eaede4;
+  --color-surface-dynamic: #dde2d5;
+  --color-divider: #d4d9cc;
+  --color-border: #c8cec0;
+  --color-text: #1e2419;
+  --color-text-muted: #6b7360;
+  --color-text-faint: #a8b09e;
+  --color-text-inverse: #f9faf7;
+  --color-primary: #2d6a4f;
+  --color-primary-hover: #1b4d38;
+  --color-primary-active: #123328;
+  --color-primary-highlight: #c8ddd2;
+  --color-accent: #e76f1e;
+  --color-accent-hover: #c4581a;
+  --color-accent-light: #fde8d5;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 3px oklch(0.2 0.03 140 / 0.08);
+  --shadow-md: 0 4px 16px oklch(0.2 0.03 140 / 0.10);
+  --shadow-lg: 0 12px 40px oklch(0.2 0.03 140 / 0.14);
+  --font-display: 'Cabinet Grotesk', 'Helvetica Neue', sans-serif;
+  --font-body: 'Satoshi', 'Inter', sans-serif;
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3rem);
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+  --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+  --space-12: 3rem; --space-16: 4rem; --space-20: 5rem;
+  --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --content-default: 680px;
+}
+[data-theme="dark"] {
+  --color-bg: #141a12;
+  --color-surface: #1a2117;
+  --color-surface-2: #1f271b;
+  --color-surface-offset: #1c2319;
+  --color-surface-dynamic: #263020;
+  --color-divider: #2a3323;
+  --color-border: #344029;
+  --color-text: #d4dbc8;
+  --color-text-muted: #8a9480;
+  --color-text-faint: #5a6352;
+  --color-text-inverse: #141a12;
+  --color-primary: #52a87a;
+  --color-primary-hover: #3d8f64;
+  --color-primary-active: #2d724f;
+  --color-primary-highlight: #1e3328;
+  --color-accent: #f08b4a;
+  --color-accent-hover: #d46e2a;
+  --color-accent-light: #2e1e10;
+  --color-surface-dynamic: #2a3522;
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.25);
+  --shadow-md: 0 4px 16px oklch(0 0 0 / 0.35);
+  --shadow-lg: 0 12px 40px oklch(0 0 0 / 0.45);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+}
+h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; }
+p, li { text-wrap: pretty; }
+button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ── LAYOUT ── */
+.app-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  background: var(--color-surface);
+  border-bottom: 1px solid oklch(from var(--color-text) l c h / 0.08);
+  padding: var(--space-4) var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--color-text);
+}
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+.logo-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  line-height: 1.2;
+}
+.logo-sub {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: background var(--transition), color var(--transition);
+}
+.theme-toggle:hover { background: var(--color-surface-offset); color: var(--color-text); }
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+}
+.quiz-container {
+  width: 100%;
+  max-width: var(--content-default);
+}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap {
+  margin-bottom: var(--space-8);
+}
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+.progress-track {
+  height: 6px;
+  background: var(--color-surface-offset);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── QUESTION CARD ── */
+.question-card {
+  background: var(--color-surface-2);
+  border: 1px solid oklch(from var(--color-text) l c h / 0.08);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+  animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.question-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.question-label::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+.question-text {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+  line-height: 1.2;
+}
+.question-hint {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+/* ── OPTION GRID ── */
+.options-grid {
+  display: grid;
+  gap: var(--space-3);
+}
+.options-grid.two-col {
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 480px) {
+  .options-grid.two-col { grid-template-columns: 1fr; }
+}
+
+.option-btn {
+  background: var(--color-surface);
+  border: 2px solid oklch(from var(--color-text) l c h / 0.10);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-5);
+  text-align: left;
+  transition: all var(--transition);
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  min-height: 44px;
+}
+.option-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-highlight);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.option-btn:active { transform: translateY(0); }
+.option-btn.selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary-highlight);
+  box-shadow: 0 0 0 3px oklch(from var(--color-primary) l c h / 0.15);
+}
+.option-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+  line-height: 1;
+}
+.option-content {}
+.option-title {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.3;
+}
+.option-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+  line-height: 1.4;
+}
+
+/* ── NAV BUTTONS ── */
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-8);
+  gap: var(--space-3);
+}
+.btn {
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  border: none;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 2px solid oklch(from var(--color-text) l c h / 0.12);
+}
+.btn-ghost:hover { background: var(--color-surface-offset); color: var(--color-text); }
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+.btn-primary:hover { background: var(--color-primary-hover); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-accent {
+  background: var(--color-accent);
+  color: #fff;
+}
+.btn-accent:hover { background: var(--color-accent-hover); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+
+/* ── INTRO SCREEN ── */
+.intro-card {
+  background: var(--color-surface-2);
+  border: 1px solid oklch(from var(--color-text) l c h / 0.08);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-10) var(--space-8);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.intro-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-5);
+}
+.intro-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  margin-bottom: var(--space-4);
+  line-height: 1.1;
+  color: var(--color-text);
+}
+.intro-title span { color: var(--color-primary); }
+.intro-body {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 52ch;
+  margin: 0 auto var(--space-8);
+  line-height: 1.7;
+}
+.intro-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+.chip {
+  background: var(--color-surface-offset);
+  color: var(--color-text-muted);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+/* ── RESULTS SCREEN ── */
+.results-card {
+  background: var(--color-surface-2);
+  border: 1px solid oklch(from var(--color-text) l c h / 0.08);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.results-hero {
+  background: var(--color-primary);
+  padding: var(--space-8);
+  color: var(--color-text-inverse);
+  text-align: center;
+}
+.results-hero-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+  margin-bottom: var(--space-3);
+}
+.results-hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  margin-bottom: var(--space-2);
+  line-height: 1.2;
+}
+.results-hero-subtitle {
+  font-size: var(--text-sm);
+  opacity: 0.85;
+  max-width: 48ch;
+  margin: 0 auto;
+}
+.results-body {
+  padding: var(--space-8);
+}
+.results-summary {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+  line-height: 1.7;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border-left: 3px solid var(--color-primary);
+}
+.courses-label {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+.course-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+.course-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid oklch(from var(--color-text) l c h / 0.08);
+  border-radius: var(--radius-xl);
+  transition: all var(--transition);
+}
+.course-item:hover { border-color: var(--color-primary); box-shadow: var(--shadow-sm); }
+.course-rank {
+  width: 28px;
+  height: 28px;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.course-rank.secondary { background: var(--color-surface-dynamic); color: var(--color-text-muted); }
+.course-info {}
+.course-name {
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+.course-why {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+.results-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+.results-divider {
+  height: 1px;
+  background: oklch(from var(--color-text) l c h / 0.08);
+  margin: var(--space-8) 0;
+}
+.restart-row {
+  text-align: center;
+  margin-top: var(--space-6);
+}
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition);
+}
+.btn-link:hover { color: var(--color-text); }
+
+/* ── CAPTURE FORM ── */
+.capture-section {
+  background: var(--color-accent-light);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+.capture-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+.capture-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+.capture-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.form-row { display: flex; gap: var(--space-3); }
+@media (max-width: 480px) { .form-row { flex-direction: column; } }
+.form-group { flex: 1; display: flex; flex-direction: column; gap: var(--space-1); }
+.form-label { font-size: var(--text-xs); font-weight: 600; color: var(--color-text-muted); }
+.form-input {
+  background: var(--color-surface-2);
+  border: 2px solid oklch(from var(--color-text) l c h / 0.12);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  transition: border-color var(--transition);
+  min-height: 44px;
+  width: 100%;
+}
+.form-input:focus { outline: none; border-color: var(--color-primary); }
+.form-input::placeholder { color: var(--color-text-faint); }
+.capture-thanks {
+  text-align: center;
+  padding: var(--space-4);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: var(--space-6);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  border-top: 1px solid oklch(from var(--color-text) l c h / 0.06);
+}
+
+/* ── HIDDEN ── */
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="app-shell">
+
+<header>
+  <a class="logo" href="https://theeverlearner.com" target="_blank" rel="noopener noreferrer">
+    <!-- Inline SVG Logo -->
+    <svg class="logo-icon" viewBox="0 0 36 36" fill="none" aria-label="The EverLearner logo" xmlns="http://www.w3.org/2000/svg">
+      <rect width="36" height="36" rx="8" fill="#2d6a4f"/>
+      <path d="M9 12h18M9 18h12M9 24h15" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="26" cy="24" r="3.5" fill="#e76f1e"/>
+    </svg>
+    <div>
+      <div class="logo-text">The EverLearner</div>
+      <div class="logo-sub">PE Teacher Academy</div>
+    </div>
+  </a>
+  <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+</header>
+
+<main>
+  <div class="quiz-container">
+
+    <!-- PROGRESS (hidden on intro/results) -->
+    <div class="progress-wrap hidden" id="progressWrap">
+      <div class="progress-meta">
+        <span id="progressLabel">Question 1 of 5</span>
+        <span id="progressPct">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- SCREEN: INTRO -->
+    <div id="screenIntro">
+      <div class="intro-card">
+        <div class="intro-badge">🎯 Free CPD Finder</div>
+        <h1 class="intro-title">Find your <span>perfect</span><br>PE CPD in 2 minutes</h1>
+        <p class="intro-body">Answer five quick questions and we'll recommend the PE Teacher Academy courses that best match your role, experience, and goals — so you can start your development with confidence.</p>
+        <div class="intro-chips">
+          <span class="chip">📚 GCSE &amp; A-Level PE</span>
+          <span class="chip">🏃 BTEC &amp; CNAT</span>
+          <span class="chip">⚡ On-demand &amp; flexible</span>
+          <span class="chip">🏫 Whole department access</span>
+          <span class="chip">✅ Trackable &amp; certified</span>
+        </div>
+        <button class="btn btn-primary" onclick="startQuiz()" style="font-size: var(--text-base); padding: var(--space-4) var(--space-10);">
+          Find my CPD
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- SCREEN: QUIZ -->
+    <div id="screenQuiz" class="hidden">
+      <div class="question-card" id="questionCard">
+        <div class="question-label" id="qLabel">Question 1</div>
+        <h2 class="question-text" id="qText"></h2>
+        <p class="question-hint" id="qHint"></p>
+        <div class="options-grid" id="optionsGrid"></div>
+        <div class="nav-row">
+          <button class="btn btn-ghost" id="btnBack" onclick="goBack()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back
+          </button>
+          <button class="btn btn-primary" id="btnNext" onclick="goNext()" disabled>
+            Next
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN: RESULTS -->
+    <div id="screenResults" class="hidden">
+      <div class="results-card">
+        <div class="results-hero">
+          <div class="results-hero-label">Your personalised recommendation</div>
+          <h2 class="results-hero-title" id="resultTitle">Your PE CPD is ready</h2>
+          <p class="results-hero-subtitle" id="resultSubtitle"></p>
+        </div>
+        <div class="results-body">
+          <p class="results-summary" id="resultSummary"></p>
+
+          <div class="capture-section" id="captureSection">
+            <h3 class="capture-title">📩 Get your free course samples</h3>
+            <p class="capture-desc">Enter your details below and we'll send you access to 20 free PE Teacher Academy course samples — no commitment needed.</p>
+            <form class="capture-form" id="captureForm" onsubmit="submitForm(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="inputName">Your name</label>
+                  <input class="form-input" type="text" id="inputName" placeholder="First name" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="inputEmail">Work email</label>
+                  <input class="form-input" type="email" id="inputEmail" placeholder="you@school.ac.uk" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="inputRole">Your role</label>
+                  <input class="form-input" type="text" id="inputRole" placeholder="e.g. Head of PE" id="inputRole">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="inputSchool">School / college</label>
+                  <input class="form-input" type="text" id="inputSchool" placeholder="School name">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-accent" style="width:100%; justify-content:center;">
+                Send me free course samples →
+              </button>
+            </form>
+            <div class="capture-thanks hidden" id="captureThanks">
+              ✅ Thanks! We'll be in touch with your free course samples shortly.
+            </div>
+          </div>
+
+          <div class="courses-label">Your recommended courses</div>
+          <div class="course-list" id="courseList"></div>
+
+          <div class="results-divider"></div>
+
+          <div class="results-cta-row">
+            <a href="https://pages.theeverlearner.com/pe-teacher-academy" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              View the full Academy
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://theeverlearner.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+              Book a demo
+            </a>
+          </div>
+
+          <div class="restart-row">
+            <button class="btn-link" onclick="restart()">Start again with different answers</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  © The EverLearner Ltd · <a href="https://theeverlearner.com" target="_blank" rel="noopener noreferrer" style="color:inherit">theeverlearner.com</a>
+</footer>
+
+</div>
+
+<script>
+// ── THEME TOGGLE ──
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  updateToggleIcon(t, d);
+  t && t.addEventListener('click', () => {
+    d = d === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', d);
+    updateToggleIcon(t, d);
+  });
+  function updateToggleIcon(btn, theme) {
+    if (!btn) return;
+    btn.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+    btn.innerHTML = theme === 'dark'
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+})();
+
+// ── QUIZ DATA ──
+const QUESTIONS = [
+  {
+    id: 'who',
+    label: 'Question 1 of 5',
+    text: 'Who are you finding CPD for?',
+    hint: 'This helps us tailor the recommendation to the right level.',
+    twoCol: true,
+    options: [
+      { icon: '👤', title: 'Just me', desc: 'I want to develop my own practice', value: 'me' },
+      { icon: '👥', title: 'My whole department', desc: 'I manage or lead PE at my school', value: 'dept' },
+      { icon: '🎓', title: 'An ECT or new teacher', desc: 'Supporting someone new to PE theory', value: 'ect' },
+      { icon: '🏫', title: 'The whole school', desc: 'CPD investment for multiple departments', value: 'school' },
+    ]
+  },
+  {
+    id: 'role',
+    label: 'Question 2 of 5',
+    text: 'What best describes your role?',
+    hint: 'Select the option that most closely matches your current position.',
+    twoCol: false,
+    options: [
+      { icon: '📖', title: 'PE Teacher', desc: 'I deliver GCSE, A-Level, BTEC, CNAT or similar', value: 'teacher' },
+      { icon: '🏅', title: 'Head of PE / Department Lead', desc: 'I manage the PE curriculum and team', value: 'hod' },
+      { icon: '📋', title: 'Director of Sport / SLT', desc: 'I have oversight of PE across the school', value: 'slt' },
+      { icon: '🌱', title: 'ECT / Trainee PE Teacher', desc: 'I am in my first years of teaching PE', value: 'ect' },
+    ]
+  },
+  {
+    id: 'pain',
+    label: 'Question 3 of 5',
+    text: 'What is your biggest challenge right now?',
+    hint: 'Pick the one that feels most urgent for you or your team.',
+    twoCol: false,
+    options: [
+      { icon: '📚', title: 'Subject knowledge gaps', desc: 'Keeping up with content across all topics and specs', value: 'knowledge' },
+      { icon: '🧠', title: 'How students learn best', desc: 'Applying research on memory, retrieval and cognition to PE', value: 'cognitive' },
+      { icon: '🏫', title: 'Classroom teaching confidence', desc: 'Structuring lessons, questioning techniques, classroom presence', value: 'pedagogy' },
+      { icon: '📋', title: 'Course management and assessment', desc: 'Running a PE qualification, exam prep, tracking progress', value: 'assessment' },
+      { icon: '📐', title: 'Building or improving the curriculum', desc: 'Sequencing, coverage, specification mapping', value: 'curriculum' },
+    ]
+  },
+  {
+    id: 'course',
+    label: 'Question 4 of 5',
+    text: 'Which qualification do you primarily teach?',
+    hint: 'All of these are covered in the Academy — this helps us point you to the most relevant content.',
+    twoCol: true,
+    options: [
+      { icon: '🔵', title: 'GCSE PE', desc: 'AQA, Edexcel, OCR or other', value: 'gcse' },
+      { icon: '🟣', title: 'A-Level PE', desc: 'AQA, Edexcel, OCR or other', value: 'alevel' },
+      { icon: '🟠', title: 'BTEC Sport', desc: 'Level 2 or Level 3', value: 'btec' },
+      { icon: '🟢', title: 'CNAT / CTEC / NCFE', desc: 'Tech Award or equivalent vocational', value: 'cnat' },
+      { icon: '🌍', title: 'IBDP SEHS', desc: 'International Baccalaureate', value: 'ibdp' },
+      { icon: '✏️', title: 'Multiple / Not sure', desc: 'I teach across more than one spec', value: 'multi' },
+    ]
+  },
+  {
+    id: 'style',
+    label: 'Question 5 of 5',
+    text: 'How do you prefer to fit CPD into your week?',
+    hint: 'The Academy is fully on-demand — this helps us suggest the right starting pace.',
+    twoCol: true,
+    options: [
+      { icon: '⚡', title: 'In short bursts', desc: '15–20 mins at a time, regularly', value: 'short' },
+      { icon: '📅', title: 'Dedicated study blocks', desc: 'An hour or more when I have time', value: 'blocks' },
+      { icon: '🌙', title: 'Outside school hours', desc: 'Evenings or weekends when it suits me', value: 'outside' },
+      { icon: '🏫', title: 'During INSET / department time', desc: 'As part of structured school CPD', value: 'inset' },
+    ]
+  }
+];
+
+// ── COURSE RECOMMENDATIONS ──
+const COURSES = {
+  pedagogy: {
+    name: 'PE Pedagogy',
+    desc: 'How to set up a PE theory classroom, run engaging learning activities, and provoke deep thinking in your students.',
+    icon: '🏫'
+  },
+  curriculum: {
+    name: 'PE Curriculum',
+    desc: 'Develop a deep, intricate knowledge of the specific qualification your students are studying.',
+    icon: '📐'
+  },
+  knowledge: {
+    name: 'PE Subject Knowledge',
+    desc: 'Master the fundamental principles of PE — from physiology to biomechanics — applicable from KS3 to KS5.',
+    icon: '📚'
+  },
+  cognitive: {
+    name: 'PE Cognitive Science',
+    desc: 'Understand how students learn, remember and forget — and apply it specifically to PE teaching.',
+    icon: '🧠'
+  },
+  assessment: {
+    name: 'PE Course Design & Assessment',
+    desc: 'Build sustainable course structures, explore assessment models, and manage your PE qualification with confidence.',
+    icon: '📋'
+  }
+};
+
+function getRecommendations(answers) {
+  // Primary: direct pain point match
+  const painMap = {
+    knowledge: ['knowledge', 'curriculum'],
+    cognitive: ['cognitive', 'pedagogy'],
+    pedagogy: ['pedagogy', 'cognitive'],
+    assessment: ['assessment', 'curriculum'],
+    curriculum: ['curriculum', 'assessment'],
+  };
+  let primary = painMap[answers.pain] || ['pedagogy', 'knowledge'];
+
+  // Role adjustments
+  if (answers.role === 'hod' || answers.role === 'slt') {
+    if (!primary.includes('assessment')) primary.splice(1, 0, 'assessment');
+    primary = primary.slice(0, 3);
+  }
+  if (answers.role === 'ect') {
+    if (!primary.includes('pedagogy')) primary.unshift('pedagogy');
+    primary = primary.slice(0, 3);
+  }
+
+  // Deduplicate and add a third if needed
+  primary = [...new Set(primary)];
+  const allCourses = ['pedagogy','curriculum','knowledge','cognitive','assessment'];
+  while (primary.length < 3) {
+    const next = allCourses.find(c => !primary.includes(c));
+    if (next) primary.push(next);
+    else break;
+  }
+
+  return primary.slice(0, 3);
+}
+
+function getPersonalisedSummary(answers, recs) {
+  const roleLabels = {
+    teacher: 'a PE teacher', hod: 'a Head of PE', slt: 'a Director of Sport',
+    ect: 'an ECT or new PE teacher'
+  };
+  const whoLabels = {
+    me: 'your own development', dept: "your department's development",
+    ect: 'an ECT you are supporting', school: 'your school'
+  };
+  const role = roleLabels[answers.role] || 'a PE educator';
+  const who = whoLabels[answers.who] || 'your team';
+
+  return `As ${role} focused on ${who}, the Academy courses below are mapped directly to your goals. 
+  Your priority area — ${COURSES[recs[0]].name} — gives you immediately applicable strategies you can take back to your classroom or department. 
+  Each course takes around one hour, is accessible on-demand, and your whole department can access all five specialisms under one flat-fee subscription.`;
+}
+
+// ── STATE ──
+let currentQ = 0;
+let answers = {};
+let selectedValue = null;
+
+// ── QUIZ FLOW ──
+function startQuiz() {
+  document.getElementById('screenIntro').classList.add('hidden');
+  document.getElementById('progressWrap').classList.remove('hidden');
+  document.getElementById('screenQuiz').classList.remove('hidden');
+  currentQ = 0;
+  answers = {};
+  renderQuestion();
+}
+
+function renderQuestion(direction) {
+  const q = QUESTIONS[currentQ];
+  selectedValue = answers[q.id] || null;
+
+  // Progress
+  const pct = Math.round((currentQ / QUESTIONS.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `Question ${currentQ + 1} of ${QUESTIONS.length}`;
+  document.getElementById('progressPct').textContent = pct + '%';
+
+  // Animate card
+  const card = document.getElementById('questionCard');
+  card.style.animation = 'none';
+  card.offsetHeight; // reflow
+  card.style.animation = '';
+
+  document.getElementById('qLabel').textContent = q.label;
+  document.getElementById('qText').textContent = q.text;
+  document.getElementById('qHint').textContent = q.hint;
+
+  const grid = document.getElementById('optionsGrid');
+  grid.className = 'options-grid' + (q.twoCol ? ' two-col' : '');
+  grid.innerHTML = '';
+
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn' + (selectedValue === opt.value ? ' selected' : '');
+    btn.setAttribute('aria-pressed', selectedValue === opt.value ? 'true' : 'false');
+    btn.innerHTML = `
+      <span class="option-icon" aria-hidden="true">${opt.icon}</span>
+      <span class="option-content">
+        <span class="option-title">${opt.title}</span>
+        ${opt.desc ? `<span class="option-desc">${opt.desc}</span>` : ''}
+      </span>`;
+    btn.addEventListener('click', () => selectOption(opt.value, btn, grid));
+    grid.appendChild(btn);
+  });
+
+  document.getElementById('btnBack').style.visibility = currentQ === 0 ? 'hidden' : 'visible';
+  document.getElementById('btnNext').disabled = !selectedValue;
+  document.getElementById('btnNext').textContent = '';
+  document.getElementById('btnNext').innerHTML = currentQ === QUESTIONS.length - 1
+    ? 'See my results <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+    : 'Next <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+}
+
+function selectOption(value, btn, grid) {
+  selectedValue = value;
+  grid.querySelectorAll('.option-btn').forEach(b => {
+    b.classList.remove('selected');
+    b.setAttribute('aria-pressed', 'false');
+  });
+  btn.classList.add('selected');
+  btn.setAttribute('aria-pressed', 'true');
+  document.getElementById('btnNext').disabled = false;
+}
+
+function goNext() {
+  if (!selectedValue) return;
+  const q = QUESTIONS[currentQ];
+  answers[q.id] = selectedValue;
+  if (currentQ < QUESTIONS.length - 1) {
+    currentQ++;
+    renderQuestion('forward');
+  } else {
+    showResults();
+  }
+}
+
+function goBack() {
+  if (currentQ > 0) {
+    currentQ--;
+    selectedValue = answers[QUESTIONS[currentQ].id] || null;
+    renderQuestion('back');
+  }
+}
+
+function showResults() {
+  document.getElementById('progressWrap').classList.add('hidden');
+  document.getElementById('screenQuiz').classList.add('hidden');
+  document.getElementById('screenResults').classList.remove('hidden');
+
+  const recs = getRecommendations(answers);
+  const summary = getPersonalisedSummary(answers, recs);
+
+  // Hero text
+  const primaryCourse = COURSES[recs[0]];
+  document.getElementById('resultTitle').textContent = `Start with ${primaryCourse.name}`;
+  document.getElementById('resultSubtitle').textContent = 'We\'ve matched you to the PE Teacher Academy courses most relevant to your role and goals.';
+  document.getElementById('resultSummary').textContent = summary;
+
+  // Course list
+  const list = document.getElementById('courseList');
+  list.innerHTML = '';
+  recs.forEach((key, i) => {
+    const c = COURSES[key];
+    const item = document.createElement('div');
+    item.className = 'course-item';
+    item.innerHTML = `
+      <div class="course-rank ${i > 0 ? 'secondary' : ''}">${i === 0 ? '★' : i + 1}</div>
+      <div class="course-info">
+        <div class="course-name">${c.icon} ${c.name}</div>
+        <div class="course-why">${c.desc}</div>
+      </div>`;
+    list.appendChild(item);
+  });
+
+  // Pre-fill role if available
+  const roleLabels = {
+    teacher: 'PE Teacher', hod: 'Head of PE',
+    slt: 'Director of Sport / SLT', ect: 'ECT / Trainee PE Teacher'
+  };
+  const roleInput = document.getElementById('inputRole');
+  if (roleInput && answers.role) roleInput.placeholder = roleLabels[answers.role] || '';
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  document.getElementById('captureForm').classList.add('hidden');
+  document.getElementById('captureThanks').classList.remove('hidden');
+  // In production: POST to HubSpot form API or webhook here
+}
+
+function restart() {
+  currentQ = 0;
+  answers = {};
+  selectedValue = null;
+  document.getElementById('screenResults').classList.add('hidden');
+  document.getElementById('captureThanks').classList.add('hidden');
+  document.getElementById('captureForm').classList.remove('hidden');
+  document.getElementById('screenIntro').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
