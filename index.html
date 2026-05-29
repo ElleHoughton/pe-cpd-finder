@@ -7,24 +7,24 @@
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
 <style>
 :root, [data-theme="light"] {
-  --color-bg: #f4f6f0;
-  --color-surface: #f9faf7;
+  --color-bg: #f0fafa;
+  --color-surface: #f6fdfc;
   --color-surface-2: #ffffff;
-  --color-surface-offset: #eaede4;
-  --color-surface-dynamic: #dde2d5;
-  --color-divider: #d4d9cc;
-  --color-border: #c8cec0;
-  --color-text: #1e2419;
-  --color-text-muted: #6b7360;
-  --color-text-faint: #a8b09e;
+  --color-surface-offset: #E7F8F6;
+  --color-surface-dynamic: #9FE3DC;
+  --color-divider: #b8e8e4;
+  --color-border: #9FE3DC;
+  --color-text: #0d2b28;
+  --color-text-muted: #3d7a74;
+  --color-text-faint: #7fc9c3;
   --color-text-inverse: #f9faf7;
-  --color-primary: #2d6a4f;
-  --color-primary-hover: #1b4d38;
-  --color-primary-active: #123328;
-  --color-primary-highlight: #c8ddd2;
-  --color-accent: #e76f1e;
-  --color-accent-hover: #c4581a;
-  --color-accent-light: #fde8d5;
+  --color-primary: #10B9A8;
+  --color-primary-hover: #0e9e8f;
+  --color-primary-active: #0a7a6e;
+  --color-primary-highlight: #E7F8F6;
+  --color-accent: #B51E40;
+  --color-accent-hover: #8e1630;
+  --color-accent-light: #FFFAE6;
   --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
   --radius-xl: 1rem; --radius-2xl: 1.5rem; --radius-full: 9999px;
   --shadow-sm: 0 1px 3px oklch(0.2 0.03 140 / 0.08);
@@ -45,14 +45,14 @@
   --content-default: 700px;
 }
 [data-theme="dark"] {
-  --color-bg:#141a12;--color-surface:#1a2117;--color-surface-2:#1f271b;
-  --color-surface-offset:#1c2319;--color-surface-dynamic:#263020;
-  --color-divider:#2a3323;--color-border:#344029;
-  --color-text:#d4dbc8;--color-text-muted:#8a9480;--color-text-faint:#5a6352;
+  --color-bg:#071a18;--color-surface:#0d2220;--color-surface-2:#102a28;
+  --color-surface-offset:#0f2422;--color-surface-dynamic:#1a3a37;
+  --color-divider:#1e3d3a;--color-border:#225450;
+  --color-text:#c8efec;--color-text-muted:#7acbc5;--color-text-faint:#3a7a75;
   --color-text-inverse:#141a12;
-  --color-primary:#52a87a;--color-primary-hover:#3d8f64;--color-primary-active:#2d724f;
-  --color-primary-highlight:#1e3328;
-  --color-accent:#f08b4a;--color-accent-hover:#d46e2a;--color-accent-light:#2e1e10;
+  --color-primary:#58CEC2;--color-primary-hover:#10B9A8;--color-primary-active:#0e9e8f;
+  --color-primary-highlight:#0f3330;
+  --color-accent:#e8365a;--color-accent-hover:#B51E40;--color-accent-light:#2e1018;
   --shadow-sm:0 1px 3px oklch(0 0 0/0.25);--shadow-md:0 4px 16px oklch(0 0 0/0.35);
   --shadow-lg:0 12px 40px oklch(0 0 0/0.45);
 }
@@ -137,7 +137,7 @@ main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:v
 
 .capture-section{background:var(--color-accent-light);border-radius:var(--radius-xl);padding:var(--space-6);margin-bottom:var(--space-6);}
 .capture-title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-2);}
-.capture-desc{font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-4);}
+.capture-desc{font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-4);}.capture-section .capture-desc{color:#6b3040;}.capture-section .capture-title{color:#B51E40;}
 .capture-form{display:flex;flex-direction:column;gap:var(--space-3);}
 .form-row{display:flex;gap:var(--space-3);}
 @media(max-width:480px){.form-row{flex-direction:column;}}
@@ -168,7 +168,7 @@ footer a{color:inherit;}
 <header>
   <a class="logo" href="https://theeverlearner.com" target="_blank" rel="noopener noreferrer">
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-label="The EverLearner logo" xmlns="http://www.w3.org/2000/svg">
-      <rect width="36" height="36" rx="8" fill="#2d6a4f"/>
+      <rect width="36" height="36" rx="8" fill="#10B9A8"/>
       <path d="M9 12h18M9 18h12M9 24h15" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
       <circle cx="26" cy="24" r="3.5" fill="#e76f1e"/>
     </svg>
@@ -246,7 +246,7 @@ footer a{color:inherit;}
         <div class="results-body">
           <p class="results-summary" id="resultSummary"></p>
 
-          <div class="courses-label">Your recommended lessons to start with</div>
+          <div class="courses-label">Your recommended courses to start with</div>
           <div class="course-list" id="courseList"></div>
           <p class="style-note" id="styleNote"></p>
 
@@ -1098,7 +1098,7 @@ function showResults() {
   const painLabel = PAIN_LABELS[answers.pain] || answers.pain;
   const whoLabel = answers.who === 'Myself' ? 'your own development' : "your department's development";
   document.getElementById('resultSummary').textContent =
-    `Based on your focus on ${painLabel} and ${styleLabel}, we've pulled together the Academy lessons most relevant to ${whoLabel}. Each lesson is under one hour, fully on-demand, and designed to give you ideas you can take straight back to your classroom.`;
+    `Based on your focus on ${painLabel} and ${styleLabel}, we've pulled together the Academy courses most relevant to ${whoLabel}. Each course is under one hour, fully on-demand, and designed to give you ideas you can take straight back to your classroom.`;
 
   // Course list
   const list = document.getElementById('courseList');
@@ -1111,14 +1111,14 @@ function showResults() {
       <div class="course-num${isPrimary ? '' : ' alt'}">${isPrimary ? '★' : i + 1}</div>
       <div>
         <div class="course-name">${lesson}</div>
-        <div class="course-tag">${i === 0 ? '⭐ Recommended starting point' : 'Also relevant for you'}</div>
+        <div class="course-tag">${i === 0 ? '⭐ Recommended starting course' : 'Also relevant for you'}</div>
       </div>`;
     list.appendChild(item);
   });
 
   // Style note
   document.getElementById('styleNote').textContent =
-    `These recommendations are tailored for ${styleLabel}. You can explore all Academy lessons at any pace once you're subscribed.`;
+    `These course recommendations are tailored for ${styleLabel}. You can explore all Academy courses at any pace once you're subscribed.`;
 
   // Pre-fill role
   const roleMap = {
